@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class HookGun : MonoBehaviour
 {
+    [SerializeField] private Vector3 initialLinePosition;
+    [SerializeField] private Vector3 endLinePosition;
+
     private LineRenderer line;
     private int linePositionCount = 2;
 
@@ -26,13 +29,13 @@ public class HookGun : MonoBehaviour
     public void UpdateInitialPointPosition(Vector3 position)
     {
         int initialPointIndex = 0;
-        UpdatePointPositon(initialPointIndex, position);
+        UpdatePointPositon(initialPointIndex, initialLinePosition + position);
     }
 
     public void UpdateEndPointPosition(Vector3 position)
     {
         int endPointIndex = 1;
-        UpdatePointPositon(endPointIndex, position);
+        UpdatePointPositon(endPointIndex, endLinePosition + position);
     }
 
     public void UpdatePointPositon(int linePointIndex, Vector3 position)

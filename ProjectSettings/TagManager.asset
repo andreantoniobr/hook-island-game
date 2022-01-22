@@ -41,6 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Watter
+    uniqueID: 448299803
+    locked: 0
+  - name: Target
+    uniqueID: 3489320903
+    locked: 0
+  - name: Line
+    uniqueID: 104794717
+    locked: 0
   - name: Player
     uniqueID: 1632537601
     locked: 0

@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public bool IsRetracting => isRetracting;
     public Vector2 Direction => direction;
 
+    public static event Action OnRetractingEvent;
+
     private void Awake()
     {
         gameInput = GetComponent<GameInput>();
@@ -41,7 +43,7 @@ public class PlayerController : MonoBehaviour
         if (isRetracting)
         {
             UpdatePosition();
-            //hookGun.UpdateEndPointPosition(transform.position);
+            hookGun.UpdateInitialPointPosition(transform.position);
         }
     }
 
@@ -90,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Grapple()
     {
-        float time = 1;
+        float time = 10;
 
         hookGun.UpdateInitialPointPosition(transform.position);
         hookGun.UpdateEndPointPosition(transform.position);
@@ -106,6 +108,12 @@ public class PlayerController : MonoBehaviour
         }
 
         hookGun.UpdateEndPointPosition(targetPosition);
+        OnRetracting();
+    }
+
+    private void OnRetracting()
+    {
         isRetracting = true;
+        OnRetractingEvent?.Invoke();
     }
 }

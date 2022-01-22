@@ -69,8 +69,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 104794717
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Positions: []
   m_Parameters:
@@ -140,3 +140,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f751352a36e81c84d885fbfdd746dcbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialLinePosition: {x: 0, y: 0, z: 0}
+  endLinePosition: {x: 0, y: 0, z: 0}

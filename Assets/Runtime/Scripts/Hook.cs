@@ -41,8 +41,8 @@ public class Hook : MonoBehaviour
         {
             foreach (HookPoint hookpoint in hookpoints)
             {
-                HookPointColliderController hookPointColliderController = hookPoint.GetComponent<HookPointColliderController>();
-                hookPointColliderController.SetInactiveCollider();
+                //HookPointColliderController hookPointColliderController = hookPoint.GetComponent<HookPointColliderController>();
+                //hookPointColliderController.SetInactiveCollider();
             }
         }
     }
