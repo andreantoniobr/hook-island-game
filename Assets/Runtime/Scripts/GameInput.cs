@@ -21,7 +21,13 @@ public class GameInput : MonoBehaviour
 
     private void Update()
     {
-        UpdateTouchInput();       
+        #if UNITY_ANDROID
+        UpdateTouchInput();
+        #endif
+
+        #if UNITY_EDITOR
+        UpdateMouseInput();
+        #endif
     }
 
     private void UpdateTouchInput()
@@ -59,6 +65,22 @@ public class GameInput : MonoBehaviour
                 isSwiping = false;
                 swipeDirection = SwipeDirection.None;
             }
+        }
+    }
+
+    private void UpdateMouseInput()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            isSwiping = true;
+            Vector3 mouseWordPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var deltaX = mouseWordPosition.x - transform.position.x; 
+            var deltaY = mouseWordPosition.y - transform.position.y;            
+            CalculateSwipeDirection(deltaX, deltaY);
+        }
+        else
+        {
+            isSwiping = false;
         }
     }
 

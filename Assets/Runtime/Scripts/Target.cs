@@ -23,8 +23,8 @@ public class Target : MonoBehaviour
         }
     }
 
-    private PlayerMovement GetPlayerComponent(Collider2D other)
+    private PlayerController GetPlayerComponent(Collider2D other)
     {
-        return other.GetComponent<PlayerMovement>();
+        return other.GetComponent<PlayerController>();
     }
 }

@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameInput gameInput;
+    [SerializeField] private HookGun hookGun;
 
-    [SerializeField] LayerMask layerMask;
-    [SerializeField] float maxDistance = 10f;
-    [SerializeField] float grappleSpeed = 10f;
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private float maxDistance = 10f;
+    [SerializeField] private float grappleSpeed = 10f;
     [SerializeField] float grappleShootSpeed = 20f;
 
-    private bool isGrappling = false;
-
+    [SerializeField] private bool isGrappling = false;
     [SerializeField] private bool isRetracting = false;
-    public bool IsRetracting => isRetracting;
-
     [SerializeField] private Vector2 targetPosition;
+
+    Vector2 direction;
+
+    public bool IsGrappling => isGrappling;
+    public bool IsRetracting => isRetracting;
+    public Vector2 Direction => direction;
 
     private void Awake()
     {
@@ -25,8 +29,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && !isGrappling)
+        if (gameInput.IsSwiping && !isGrappling)
         {
+            direction = gameInput.Direction;
             StartGrapple();
         }
     }
@@ -35,23 +40,25 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isRetracting)
         {
-            UpdateHookPosition();
+            UpdatePosition();
+            //hookGun.UpdateEndPointPosition(transform.position);
         }
     }
 
-    private void UpdateHookPosition()
+    private void UpdatePosition()
     {
         Vector2 currentPosition = transform.position;
-        Vector2 newPosition = Vector2.Lerp(currentPosition, targetPosition, grappleSpeed * Time.fixedDeltaTime);
+        Vector2 position = Vector2.Lerp(currentPosition, targetPosition, grappleSpeed * Time.fixedDeltaTime);
 
         if (IsInTarget(currentPosition))
         {
-            newPosition = targetPosition;
+            position = targetPosition;
             isRetracting = false;
             isGrappling = false;
+            hookGun.SetInactiveLine();
         }
 
-        transform.position = newPosition;
+        transform.position = position;
     }
 
     private bool IsInTarget(Vector2 currentPosition)
@@ -60,23 +67,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void StartGrapple()
-    {
-        Vector2 direction = Vector2.zero;
-
-#if UNITY_ANDROID
-        direction = gameInput.Direction;
-#endif
-
-
-#if UNITY_EDITOR
-        direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-#endif
-
-
-
-
-
-        Debug.Log(direction);
+    {  
+        //Debug.Log(direction);
 
         if (!isRetracting)
         {
@@ -84,13 +76,12 @@ public class PlayerMovement : MonoBehaviour
             if (hit)
             {
                 HookPoint hookPoint = hit.transform.GetComponent<HookPoint>();
-
                 if (hookPoint != null && hit.collider != null)
                 {
                     isGrappling = true;
                     targetPosition = hookPoint.TargetPosition;
                     Debug.Log(hit.transform.name);
-                    //transform.position = target;
+                    hookGun.SetActiveLine();
                     StartCoroutine(Grapple());
                 }
             }            
@@ -99,17 +90,22 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Grapple()
     {
-        float t = 0;
-        float time = 10;
+        float time = 1;
+
+        hookGun.UpdateInitialPointPosition(transform.position);
+        hookGun.UpdateEndPointPosition(transform.position);
 
         Vector2 newPos;
 
-        for (; t < time; t += grappleShootSpeed * Time.deltaTime)
+        for (float t = 0; t < time; t += grappleShootSpeed * Time.deltaTime)
         {
             newPos = Vector2.Lerp(transform.position, targetPosition, t / time);
+            hookGun.UpdateInitialPointPosition(transform.position);
+            hookGun.UpdateEndPointPosition(newPos);
             yield return null;
         }
 
+        hookGun.UpdateEndPointPosition(targetPosition);
         isRetracting = true;
     }
 }
