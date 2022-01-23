@@ -116,6 +116,7 @@ MonoBehaviour:
   isGrappling: 0
   isRetracting: 0
   targetPosition: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
 --- !u!114 &8229502145045896578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1632537601
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 2791054384222058016, guid: 6a8333c2635aef04ead3b6640a060398, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -384,6 +385,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HookGun
       objectReference: {fileID: 0}
+    - target: {fileID: 3546002922276683302, guid: 8cfbd8e9adfbf014da8a6717d209d78d, type: 3}
+      propertyPath: hook
+      value: 
+      objectReference: {fileID: 782096912113017364}
+    - target: {fileID: 3546002922276683302, guid: 8cfbd8e9adfbf014da8a6717d209d78d, type: 3}
+      propertyPath: endLinePosition
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4434950505977541760, guid: 8cfbd8e9adfbf014da8a6717d209d78d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -428,6 +437,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190718128447744200, guid: 8cfbd8e9adfbf014da8a6717d209d78d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190718128447744200, guid: 8cfbd8e9adfbf014da8a6717d209d78d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190718128447744200, guid: 8cfbd8e9adfbf014da8a6717d209d78d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cfbd8e9adfbf014da8a6717d209d78d, type: 3}
 --- !u!4 &8295597119934801005 stripped
@@ -446,6 +467,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f751352a36e81c84d885fbfdd746dcbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &782096912113017364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4920581318307246841, guid: 8cfbd8e9adfbf014da8a6717d209d78d, type: 3}
+  m_PrefabInstance: {fileID: 5662144429785174253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6133057057329634075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -455,7 +481,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1137212607932645110, guid: 49558bf32ba95de4b9da9ab9aa5c83f3, type: 3}
       propertyPath: m_Name
-      value: PlayerDustParticle
+      value: DustParticle
       objectReference: {fileID: 0}
     - target: {fileID: 1137212607932645115, guid: 49558bf32ba95de4b9da9ab9aa5c83f3, type: 3}
       propertyPath: m_RootOrder

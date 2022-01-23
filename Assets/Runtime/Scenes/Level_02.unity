@@ -302,6 +302,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9198061840859475659, guid: 32cbdbd6f54ffcd499ffdd4d6d8026ff, type: 3}
+      propertyPath: endLinePosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198061840859475659, guid: 32cbdbd6f54ffcd499ffdd4d6d8026ff, type: 3}
+      propertyPath: hookPositionAjust
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198061840859475659, guid: 32cbdbd6f54ffcd499ffdd4d6d8026ff, type: 3}
+      propertyPath: lineSizeIncrement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198061840859475659, guid: 32cbdbd6f54ffcd499ffdd4d6d8026ff, type: 3}
+      propertyPath: lineInitialPoint.y
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32cbdbd6f54ffcd499ffdd4d6d8026ff, type: 3}
 --- !u!1 &450314816

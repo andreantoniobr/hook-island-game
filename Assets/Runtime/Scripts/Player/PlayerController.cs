@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isRetracting = false;
     [SerializeField] private Vector2 targetPosition;
 
-    Vector2 direction;
+    [SerializeField] Vector2 direction;
 
     public bool IsGrappling => isGrappling;
     public bool IsRetracting => isRetracting;
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
         {
             UpdatePosition();
             hookGun.UpdateInitialPointPosition(transform.position);
+            hookGun.UpdateHookPosition(targetPosition, direction);
         }
     }
 
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour
             position = targetPosition;
             isRetracting = false;
             isGrappling = false;
-            hookGun.SetInactiveLine();
+            hookGun.SetInactive();
             OnTarget?.Invoke();
         }
 
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
                     isGrappling = true;
                     targetPosition = hookPoint.TargetPosition;
                     Debug.Log(hit.transform.name);
-                    hookGun.SetActiveLine();
+                    hookGun.SetActive();
                     StartCoroutine(Grapple());
                 }
             }            
@@ -97,19 +98,23 @@ public class PlayerController : MonoBehaviour
         float time = 10;
 
         hookGun.UpdateInitialPointPosition(transform.position);
-        hookGun.UpdateEndPointPosition(transform.position);
+        hookGun.UpdateEndPointPosition(transform.position, direction);
+        hookGun.UpdateHookPosition(transform.position, direction);
+        hookGun.UpdateHookRotation(direction);
 
-        Vector2 newPos;
+        Vector2 currentPosition;
 
         for (float t = 0; t < time; t += grappleShootSpeed * Time.deltaTime)
         {
-            newPos = Vector2.Lerp(transform.position, targetPosition, t / time);
+            currentPosition = Vector2.Lerp(transform.position, targetPosition, t / time);
             hookGun.UpdateInitialPointPosition(transform.position);
-            hookGun.UpdateEndPointPosition(newPos);
+            hookGun.UpdateEndPointPosition(currentPosition, direction);
+            hookGun.UpdateHookPosition(currentPosition, direction);
             yield return null;
         }
 
-        hookGun.UpdateEndPointPosition(targetPosition);
+        hookGun.UpdateEndPointPosition(targetPosition, direction);
+        hookGun.UpdateHookPosition(targetPosition, direction);
         OnRetracting();
     }
 
