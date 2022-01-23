@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 Direction => direction;
 
     public static event Action OnRetractingEvent;
+    public static event Action OnTarget;
 
     private void Awake()
     {
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
             isRetracting = false;
             isGrappling = false;
             hookGun.SetInactiveLine();
+            OnTarget?.Invoke();
         }
 
         transform.position = position;

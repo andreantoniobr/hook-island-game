@@ -44,8 +44,14 @@ TagManager:
   - name: Watter
     uniqueID: 448299803
     locked: 0
+  - name: Pillar
+    uniqueID: 869068665
+    locked: 0
   - name: Target
     uniqueID: 3489320903
+    locked: 0
+  - name: PillarActivateEffect
+    uniqueID: 1158493773
     locked: 0
   - name: Line
     uniqueID: 104794717

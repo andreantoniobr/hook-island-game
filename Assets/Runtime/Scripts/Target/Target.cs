@@ -6,7 +6,7 @@ public class Target : MonoBehaviour
 {
     [SerializeField] private Sprite targetActive;
     [SerializeField] private Sprite targetNotActive;
-    [SerializeField] private GameObject particleOnActive;
+    [SerializeField] private GameObject[] particlesOnActive;
 
     [Header("Target state")]
     [SerializeField] private bool isActive;
@@ -48,6 +48,18 @@ public class Target : MonoBehaviour
             isActive = true;
             spriteRenderer.sprite = targetActive;
             OnTargetActivedEvent?.Invoke();
+            InstantiateEffects();
+        }
+    }
+
+    private void InstantiateEffects()
+    {
+        if (particlesOnActive.Length > 0)
+        {
+            foreach (GameObject particle in particlesOnActive)
+            {
+                Instantiate(particle, transform);
+            }            
         }
     }
 
