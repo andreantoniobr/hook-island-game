@@ -1,55 +1,70 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
-[System.Serializable]
-public class GameLevel
-{
-    public int LevelNumberID;
-    public Scene LevelScene;
-    public bool IsFinished;
-}
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private GameLevel currentGameLevel;
-    [SerializeField] private bool currentGameLevelIsFinished;
-    [SerializeField] private GameLevel[] gameLevels;
+    [SerializeField] private List<Target> targets = new List<Target>();
 
-    //TODO: VERIFY WITH EVENTS
+    private static LevelManager instance;
+    public static LevelManager Instance => instance;
+
+    private void Awake()
+    {
+        SetThisInstance();
+    }
+
     private void Update()
     {
-        VerifyIfCurrentLevelFinished();
-    }
+        CheckActiveTargetsInLevel();
+    }    
 
-    private void VerifyIfCurrentLevelFinished()
+    private void SetThisInstance()
     {
-        if (currentGameLevel.IsFinished)
+        if (instance != null && instance != this)
         {
-            PassToNextLevel();            
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
-    private void PassToNextLevel()
+    private void CheckActiveTargetsInLevel()
     {
-        GameLevel gameLevel = GetNextLevel();
-        if (gameLevel != null && gameLevel.LevelScene != null)
+        if (targets.Count > 0 && AllTargetsAreActive())
         {
-            currentGameLevel = gameLevel;
-            SceneManager.LoadScene(gameLevel.LevelScene.name);
+            LevelsSceneManager.Instance.GoToNextLevel();
         }
     }
 
-    private GameLevel GetNextLevel()
+    private bool AllTargetsAreActive()
     {
-        GameLevel nextLevel = null;
-        foreach (GameLevel gameLevel in gameLevels)
+        bool targetsActives = true;
+        foreach (Target target in targets)
         {
-            if (gameLevel.LevelNumberID == currentGameLevel.LevelNumberID + 1 && gameLevel.IsFinished == false)
+            if (!target.IsActive)
             {
-                nextLevel = gameLevel;
+                targetsActives = false;
                 break;
             }
         }
-        return nextLevel;
+        return targetsActives;
     }
+
+    public void AddTarget(Target target)
+    {
+        if (target != null)
+        {
+            targets.Add(target);
+        }
+    }
+
+    public void ClearAllTargets() 
+    {
+        targets.Clear();
+    }
+
 }

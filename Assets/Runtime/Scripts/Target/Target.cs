@@ -24,6 +24,11 @@ public class Target : MonoBehaviour
         spriteRenderer.sprite = targetNotActive;
     }
 
+    private void Start()
+    {
+        LevelManager.Instance.AddTarget(this);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (GetPlayerComponent(other))
