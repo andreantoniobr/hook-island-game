@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 520098863034496488, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: directions.Array.data[0]
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 952503675413962543, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_RootOrder
@@ -21,11 +21,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 952503675413962543, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 952503675413962543, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 952503675413962543, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -62,10 +62,10 @@ PrefabInstance:
     - target: {fileID: 5049015870619425670, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: pillarSprite
       value: 
-      objectReference: {fileID: 8361351992186442579, guid: 68938a715a4af4e498dd02473220dbe1, type: 3}
+      objectReference: {fileID: 4821741179282599972, guid: c5b8f32f59f4c104e942c55ddeff696f, type: 3}
     - target: {fileID: 5296951991632725899, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_Name
-      value: PillarHookUp
+      value: PillarHookRight
       objectReference: {fileID: 0}
     - target: {fileID: 5632745488917297398, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_Color.a

@@ -9,15 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 520098863034496488, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: directions.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 520098863034496488, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: directions.Array.data[0]
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 520098863034496488, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
-      propertyPath: directions.Array.data[1]
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 952503675413962543, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_RootOrder
@@ -63,9 +59,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5049015870619425670, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
+      propertyPath: pillarSprite
+      value: 
+      objectReference: {fileID: 8361351992186442579, guid: 68938a715a4af4e498dd02473220dbe1, type: 3}
     - target: {fileID: 5296951991632725899, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_Name
-      value: HookUpLeft
+      value: PillarHookUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632745488917297398, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}

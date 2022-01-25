@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 520098863034496488, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: directions.Array.data[0]
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 520098863034496488, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: directions.Array.data[1]
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 952503675413962543, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5296951991632725899, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
       propertyPath: m_Name
-      value: HookDownLeft
+      value: PillarHookUpRight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e684c41dad0108419f316fdce3e496d, type: 3}
