@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +13,7 @@ public class GameLevel
 
 public class LevelsSceneManager : MonoBehaviour
 {
+    [SerializeField] private float timeToLoadScene = 0.5f;
     [SerializeField] private GameLevel currentGameLevel;
     [SerializeField] private GameLevel[] gameLevels;
 
@@ -34,6 +37,7 @@ public class LevelsSceneManager : MonoBehaviour
     private void Start()
     {
         levelManager = LevelManager.Instance;
+
     }
 
     private void SetThisInstance()
@@ -80,7 +84,7 @@ public class LevelsSceneManager : MonoBehaviour
         {
             Debug.Log(gameLevel.LevelSceneName);
             currentGameLevel = gameLevel;
-            SceneManager.LoadScene(gameLevel.LevelSceneName);
+            StartCoroutine(LoadNextSceneCoroutine(gameLevel));
         }
     }
 
@@ -104,6 +108,22 @@ public class LevelsSceneManager : MonoBehaviour
         {
             levelManager.ClearAllTargets();
         }
+    }
+
+    private IEnumerator LoadSceneCoroutine()
+    {
+        yield return StartCoroutine(UIAnimationsController.Instance.PlayFadeOut());
+    }
+
+    private IEnumerator LoadNextSceneCoroutine(GameLevel gameLevel)
+    {
+        UIManager.Instance.ScreenController.SetActiveScreen(ScreenType.LevelCleared);
+        yield return new WaitForSeconds(timeToLoadScene);
+        yield return StartCoroutine(UIAnimationsController.Instance.PlayFadeIn());
+        // yield return new WaitForSeconds(timeToLoadScene);
+        UIManager.Instance.ScreenController.SetInactiveAllScreens();
+         SceneManager.LoadScene(gameLevel.LevelSceneName);
+        yield return StartCoroutine(LoadSceneCoroutine());
     }
 
     public void GoToNextLevel()
